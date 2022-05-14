@@ -1,3 +1,3 @@
 <?php
 
-echo "<h1> Welcome to my demo website </h1>"
+echo "<h1> Welcome to my demo website </h1>";
