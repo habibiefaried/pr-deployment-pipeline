@@ -31,7 +31,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           envs: PRNUM, VHOST_ADDRESS
           script: |
-            envsubst < /etc/caddy/vhost.caddy.template > /tmp/temporary
+            PRNUM=$PRNUM envsubst < /etc/caddy/vhost.caddy.template > /tmp/temporary
             sudo cp /tmp/temporary "/etc/caddy/includes/$PRNUM.$VHOST_ADDRESS"
             sudo docker rm -f "pr-deployment-pipeline-$PRNUM" 2>/dev/null
             sudo docker pull habibiefaried/pr-deployment-pipeline:pr-$PRNUM
