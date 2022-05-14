@@ -31,7 +31,7 @@ jobs:
           envs: PRNUM
           script: |
             envsubst < /etc/caddy/vhost.caddy.template > /tmp/temporary
-            sudo cp /tmp/temporary "/etc/caddy/includes/$PRNUM.prt3st.d3m0.habibiefaried.com"
+            sudo cp /tmp/temporary "/etc/caddy/includes/$PRNUM.$VHOST_ADDRESS"
             sudo docker rm -f "pr-deployment-pipeline-$PRNUM" 2>/dev/null
             sudo docker pull habibiefaried/pr-deployment-pipeline:pr-$PRNUM
             sudo docker run --name "pr-deployment-pipeline-$PRNUM" -dit -p "127.0.0.1:4000$PRNUM:80" habibiefaried/pr-deployment-pipeline:pr-$PRNUM
