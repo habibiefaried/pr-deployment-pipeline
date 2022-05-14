@@ -12,6 +12,12 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
 
+      - name: Publish Docker image
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker build . -t "habibiefaried/pr-deployment-pipeline:pr-${{ github.event.number }}"
+          docker push "habibiefaried/pr-deployment-pipeline:pr-${{ github.event.number }}"
+
       # https://github.com/appleboy/ssh-action
       - name: Deploy docker
         uses: appleboy/ssh-action@master
